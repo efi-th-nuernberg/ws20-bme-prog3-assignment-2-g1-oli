@@ -3,7 +3,6 @@ import javax.xml.bind.MarshalException;
 class TextFormatter {
 
   private int max;
-  private int counter;
 
   private static final String text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy " +
           "eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et " +
@@ -25,8 +24,40 @@ class TextFormatter {
 
   }
 
+
   // Ausgabe
-  public void print(String aText) {
+  public void print (String aText) {
+    int temp = 0;
+    String output = "";
+    for (int i=0; i < aText.length(); i++){
+      if (temp < max){
+        output = output + aText.charAt(i);
+        temp++;
+      }
+      if (temp == max) {
+        if (aText.charAt(i) == (' ')){
+          output = output + ("\n");
+          temp = 0;
+        }
+        if (aText.charAt(i) != (' ')){
+          while (true){
+            if (aText.charAt(i) == (' ')){
+              output = output + ("\n");
+              temp = 0;
+              break;
+            } else {
+              output = output.substring(0, output.length()-1);
+              i--;
+            }
+          }
+        }
+      }
+    }
+    System.out.println(output);
+  }
+
+ 
+  /*public void print(String aText) {
     for (int i=1; i<= aText.length(); i++){
         if (i % max != 0){
           System.out.print(aText.charAt(i-1));
@@ -39,5 +70,5 @@ class TextFormatter {
           }
         }
     }
-  }
+  }*/
 }
