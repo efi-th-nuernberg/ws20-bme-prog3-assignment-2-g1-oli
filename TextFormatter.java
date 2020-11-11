@@ -177,3 +177,4 @@ class TextFormatter {
       lines.add(line);
     }
 }
+
